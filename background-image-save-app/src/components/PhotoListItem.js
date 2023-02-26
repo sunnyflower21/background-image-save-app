@@ -1,10 +1,4 @@
-import {
-  View,
-  Text,
-  FlatList,
-  useWindowDimensions,
-  Animated,
-} from "react-native";
+import { View, useWindowDimensions, Animated } from "react-native";
 import React, { useCallback, useState } from "react";
 import Button from "./Button";
 import { RemoteImage } from "./RemoteImage";
@@ -26,7 +20,6 @@ export default PhotoListItem = (props) => {
     }).start();
   }, []);
   const onPressOut = useCallback(() => {
-    console.log("onPressouttt");
     Animated.timing(animValue, {
       duration: 200,
       toValue: 0,

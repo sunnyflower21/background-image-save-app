@@ -28,7 +28,7 @@ export default BottomTabNavigation = () => {
         },
       })}
     >
-      <Tabs.Screen name="CountScreen" component={CountScreen}></Tabs.Screen>
+      {/* <Tabs.Screen name="CountScreen" component={CountScreen}></Tabs.Screen> */}
       <Tabs.Screen name="ImageList" component={ImageListScreen}></Tabs.Screen>
       <Tabs.Screen
         name="FavoriteImageList"

@@ -15,16 +15,32 @@ import Icons from "../components/Icons";
 import * as FileSystem from "expo-file-system";
 import { createDownloadResumable } from "expo-file-system";
 import * as MediaLibrary from "expo-media-library";
+import { useDispatch } from "react-redux";
+import { onClickFavorite } from "../actions/favorite";
+import { useSelector } from "react-redux";
 
 export default ImageDetailScreen = () => {
   const navigation = useNavigation();
   const route = useRoute();
   const { width } = useWindowDimensions();
+
+  const isFavorite = useSelector((state) => {
+    return (
+      state.favorite.favoriteList.filter((item) => item === route.params.url)
+        .length > 0
+    );
+  });
   const onPressBack = useCallback(() => {
     navigation.goBack();
   }, []);
 
   const [download, setDownload] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const onPressFavorite = useCallback(() => {
+    dispatch(onClickFavorite(route.params.url));
+  }, []);
 
   const onPressDownload = useCallback(async () => {
     setDownload(true);
@@ -71,6 +87,10 @@ export default ImageDetailScreen = () => {
           ></Header.Icon>
           <Header.Title title={"image detail"}></Header.Title>
         </Header.Group>
+        <Header.Icon
+          iconName={isFavorite ? "heart" : "heart-outline"}
+          onPress={onPressFavorite}
+        ></Header.Icon>
       </Header>
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <RemoteImage
