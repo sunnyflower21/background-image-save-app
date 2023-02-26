@@ -1,7 +1,7 @@
 import { ACTION_CLICKED_FAVORITE } from "../actions/favorite";
 
 export const initialState = {
-  favoriteList: [],
+  favoriteList: [], // === url
 };
 
 export const favoriteReducer = (state = initialState, action) => {
